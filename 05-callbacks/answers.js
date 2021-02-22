@@ -37,7 +37,13 @@ function passwordCheckerCb(email, password, cb){
 function passwordCheckerPrms(email, password){
   return new Promise((resolve, reject) => {
     passwordCheckerCb(email, password, (error, user) => {
-      
+      if(error===null){
+        resolve(user);
+      }
+      else{
+        reject(error);
+      }
+
       /* IMPLEMENT ME! */
     });
   });
@@ -51,7 +57,16 @@ function passwordCheckerPrms(email, password){
  * @param {*} fnParams 
  * @return {Promise<any, any>}
  */
-function makePromiseFromFunctionWithCallback(fn, ...fnParams){
+function makePromiseFromFunctionWithCallback(fn, ...fnParams) {
+  return new Promise((resolve, reject)=>{
+    fn(...fnParams,(error,user)=>{
+      if(!error) {
+        resolve(user);
+      }else{
+        reject(error);
+      }
+    })
+  })
   /* 
   Return a promise that 
     - calls fn with the fnParams and a callback (like fn(...fnParams, cb))
