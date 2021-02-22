@@ -7,6 +7,9 @@
  */
 function makePromiseResolveWith3(){
   /* IMPLEMENT ME! */
+  return new Promise((resolve,reject)=>{
+    resolve(3);
+  })
 }
 
 /**
@@ -17,7 +20,11 @@ function makePromiseResolveWith3(){
  */
 function makePromiseRejectWithBoo(){
   /* IMPLEMENT ME! */
+  return new Promise((resolve,reject)=>{
+    reject("Boo!");
+  })
 }
+
 
 /**
  * 
@@ -30,6 +37,10 @@ function makePromiseRejectWithBoo(){
 function makePromiseWithConstructor(itShouldResolve){
   return new Promise((resolve, reject) => {
     /* If itShouldResolve is true, call resolve */
+    if(itShouldResolve)
+      resolve();
+    else
+      reject();
     /* If itShouldResolve is false, call reject */
   });
 }
@@ -44,6 +55,11 @@ function makePromiseWithConstructor(itShouldResolve){
  */
 function makeDelayPromise(value, delayInMs){
   /* Return a promise that resolves with the value after delayInMs */
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve(value);
+    },delayInMs);
+  })
 }
 
 module.exports = {
